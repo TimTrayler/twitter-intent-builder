@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Intent Builder</title>
+
+    <link href="https://www.google.com/s2/favicons?domain=twitter.com&sz=256" rel="icon">
+    <link href="/index.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+
+    <script src="index.js"></script>
+
+    <!--Twitter Card-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@timtrayler">
+    <meta name="twitter:title" content="Twitter Web Intent Builder">
+    <meta name="twitter:description" content="This Website allows you to create your own web intents including the Tweet (/intents/tweet), Follow (/intents/follow), Like (/intents/like) and Retweet (/intents/retweet) Intents!">
+
+</head>
+<body>
+    <div>
+        <h1 class="headline">Twitter Intent Builder</h1>
+        <div>
+            <a href="https://twitter.com/TimTrylr?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-dnt="true" data-show-count="false">Follow Me</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="https://twitter.com/intent/tweet?screen_name=TimTrylr&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-text="Twitter Intent Builder:" data-related="TimTrayler" data-show-screen-name="false" data-dnt="true" data-show-count="false">Send Feedback</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="api/examples.html">Try out the API!</a>
+        </div>
+    </div>
+    
+    <br/>
+    <br/>
+    <input type="radio" name="intent" id="rtweet" onkeyup="onTweetInputChange(document.getElementsByClassName('tweet-input')[0])">
+    <label for="intent-type">Tweet</label><br/>
+
+    <textarea class="free-area tweet-input" maxlength="280" placeholder="Tweet" onkeyup="onTweetInputChange(this)"></textarea><br/><br/>
+    <div><button onclick="toggleTweetVancedOpt()">Advanced Options</button><div id="vanced-opt" hidden>
+        <br/>
+        <input type="text" placeholder="Hashtags (split commas)" id="hashtags"
+        onkeyup="onTweetInputChange(document.getElementsByClassName('tweet-input')[0])">
+        <input type="url" placeholder="URL" id="url"
+        onkeyup="onTweetInputChange(document.getElementsByClassName('tweet-input')[0])">
+        <input type="text" placeholder="Via-Label" id="via-label"
+        onkeyup="onTweetInputChange(document.getElementsByClassName('tweet-input')[0])">
+        
+        <br/><br/><input type="checkbox" id="usecard" onchange="toggleTweetCardSet()"> <label>Enable Cards (will overwrite URL)</label><br/>
+        <div><br/><div id="cardset" hidden>
+            <input type="text" placeholder="User (@handle)" id="card-handle">
+            <input type="text" placeholder="Card Title" id="card-title">
+            <input type="text" placeholder="Card Description" id="card-desc">
+            <input type="url" placeholder="Image URL" id="card-imgurl">
+            <input type="url" placeholder="URL" id="card-url">
+            <br/><br/><button onclick="onTweetInputChange(document.getElementsByClassName('tweet-input')[0])">Save</button>
+        <br/></div></div>
+    </div></div>
+    <br/>
+
+    <input type="radio" name="intent" id="rfollow" onkeyup="onTweetInputChange(document.getElementsByClassName('follow-input')[0])">
+    <label for="intent-type">Follow</label><br/>
+
+    <input type="text" class="follow-input" placeholder="Handle or User ID" onkeyup="onFollowChange(this)">
+    <br/><br/>
+
+    <input type="radio" name="intent" id="rretweet" onkeyup="onTweetInputChange(document.getElementsByClassName('retweet-input')[0])">
+    <label for="intent-type">Retweet</label><br/>
+
+    <input type="text" class="retweet-input" placeholder="Tweet ID or URL" onkeyup="onRetweetChange(this)">
+    <br/><br/>
+
+    <input type="radio" name="intent" id="rlike" onkeyup="onTweetInputChange(document.getElementsByClassName('like-input')[0])">
+    <label for="intent-type">Like</label><br/>
+
+    <input type="text" class="like-input" placeholder="Tweet ID or URL" onkeyup="onLikeChange(this)">
+    <br/><br/>
+
+    <input type="radio" name="intent" id="rdm" onkeyup="onTweetInputChange(document.getElementsByClassName('dm-input')[0])">
+    <label for="intent-type">DM</label><br/>
+
+    <input type="text" class="dm-input" placeholder="Target User ID" onkeyup="onDMChange(this)" id="tuiddm">
+    <button onclick="openUserIDHelpWindow()">Help</button><br/>
+    <input type="text" placeholder="Text" id="dm-text" onkeyup="onDMChange(document.querySelector('#tuiddm'))">
+    <br/><br/>
+
+
+    <br/><textarea placeholder="Output" rows="2" class="out" readonly></textarea><br/><br/>
+    <button onclick="copyOut()">Copy</button> <button onclick="openOut()">Open</button>
+</body>
+</html>
